@@ -1,1 +1,0 @@
-import{j as s,F as e,f as n}from"./index-Bun_XQ8r.js";function r({numItems:a}){return s.jsxs("div",{className:"cartbar-container",children:[s.jsxs("div",{className:"icon-shopping",children:[s.jsx(e,{icon:n,size:"lg"}),s.jsx("span",{className:"number-of-items",children:a})]}),s.jsx("span",{children:"Ver sacola"})]})}export{r as default};
