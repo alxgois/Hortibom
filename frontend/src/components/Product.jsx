@@ -1,13 +1,12 @@
 import { useState } from "react";
 import QuantitySelector from "./QuantitySelector";
 import productImgDefault from "../assets/products/no-img.png";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Product({ id, image, category, name, defaultQuantity, unit, price, addToCart, removeFromCart, cartItems }) {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-
-  const handleRemoveItem = () => {
-    removeFromCart(id);
-  };
+  const [selectedUnit, setSelectedUnit] = useState("kg");
 
   return (
     <article
@@ -27,7 +26,7 @@ function Product({ id, image, category, name, defaultQuantity, unit, price, addT
           marginBottom: "10px",
         }}>
         <div className='img-container'>
-          <img src={image || productImgDefault} alt={name} />
+          <img src={image || productImgDefault} alt={name} loading='lazy' />
         </div>
         <div
           style={{
@@ -64,10 +63,11 @@ function Product({ id, image, category, name, defaultQuantity, unit, price, addT
               padding: "5px 0px",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "gray",
-              color: "white",
+              backgroundColor: selectedUnit === "kg" ? "rgba(0, 0, 0, 0.7)" : "rgba(241, 241, 241, 0.93)",
+              color: selectedUnit === "kg" ? "white" : "black",
               borderRadius: "10px",
-            }}>
+            }}
+            onClick={() => setSelectedUnit("kg")}>
             kg
           </div>
           <div
@@ -76,10 +76,11 @@ function Product({ id, image, category, name, defaultQuantity, unit, price, addT
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "rgba(241, 241, 241, 0.93)",
-              color: "black",
+              backgroundColor: selectedUnit === "unidade" ? "rgba(0, 0, 0, 0.7)" : "rgba(241, 241, 241, 0.93)",
+              color: selectedUnit === "unidade" ? "white" : "black",
               borderRadius: "10px",
-            }}>
+            }}
+            onClick={() => setSelectedUnit("unidade")}>
             Unidade
           </div>
         </div>
@@ -161,15 +162,19 @@ function Product({ id, image, category, name, defaultQuantity, unit, price, addT
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "var(--green)",
+            backgroundColor: "var(--brand-color)",
             height: "100%",
             borderRadius: "5px",
             color: "white",
             WebkitUserSelect: "none",
             cursor: "pointer",
+            fontSize: "0.8rem",
+            gap: "5px",
+            padding: "0px 5px",
           }}
-          onClick={() => addToCart(id, name, unit, price, selectedQuantity)}>
+          onClick={() => addToCart(id, name, selectedUnit, price, selectedQuantity)}>
           <p>Adicionar</p>
+          <FontAwesomeIcon icon={faCartShopping} />
         </div>
       </div>
     </article>

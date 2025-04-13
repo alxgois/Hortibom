@@ -13,19 +13,28 @@ function Cart({ cartItems, cartRef, addToCart, removeFromCart }) {
   const [userData, setUserData] = useState({
     name: "",
     phone: "",
+    address: "",
+    observations: "",
   });
 
-  // const generateOrderMessage = () => {
-
-  // };
+  const checkUnit = (quantity, unit) => {
+    if (unit.toLowerCase() === "unidade") {
+      if (quantity > 1) {
+        return "unidades";
+      } else {
+        return "unidade";
+      }
+    }
+    return unit;
+  };
 
   const createOrder = async () => {
     try {
       const docRef = await addDoc(collection(db, "pedidos"), {
-        endereco: "Mogi",
+        endereco: userData.address,
         itens: cartItems,
-        nome: "Alexsander",
-        telefone: "551196549183",
+        nome: userData.name,
+        telefone: userData.phone,
       });
       console.log("Documento gerado com ID: ", docRef.id);
 
@@ -37,14 +46,14 @@ function Cart({ cartItems, cartRef, addToCart, removeFromCart }) {
  
 👤 *Cliente:* ${userData.name}
 📞 *Telefone:* ${userData.phone}
-📍 *Endereço:* Mogi
+📍 *Endereço:* ${userData.address}
 
 📝 *Itens do Pedido:*\n${itemList}
   
 💰 *Valor total:* 
 💳 *Pagamento:* 
   
-✅ *Observações:* ${cartItems.observacoes || "Nenhuma"}`;
+${cartItems.observations ? `📌 *Observações:* ${userData.observations}` : ""}`;
 
       const whatsappURL = `https://api.whatsapp.com/send?phone=${userData.phone}&text=${encodeURIComponent(message)}`;
       window.open(whatsappURL);
@@ -94,7 +103,7 @@ function Cart({ cartItems, cartRef, addToCart, removeFromCart }) {
                   justifyContent: "space-between",
                   alignItems: "center",
                 }}>
-                <p>{quantity + " " + unit}</p>
+                <p>{quantity + " " + checkUnit(quantity, unit)}</p>
                 <div
                   className='prevent-select'
                   style={{

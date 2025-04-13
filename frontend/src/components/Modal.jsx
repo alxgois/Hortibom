@@ -30,6 +30,9 @@ function Modal({ showModal, createOrder, userData, setUserData }) {
       className='modal'
       style={{
         position: "fixed",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         top: 0,
         left: 0,
         width: "100%",
@@ -42,11 +45,10 @@ function Modal({ showModal, createOrder, userData, setUserData }) {
         style={{
           backgroundColor: "white",
           width: "500px",
-          margin: "20% auto",
           padding: "20px",
           borderRadius: "5px",
         }}>
-        <div style={{ marginBottom: "" }}>
+        <div style={{ marginBottom: "30px" }}>
           <FontAwesomeIcon icon={faArrowLeft} />
           <span style={{ marginLeft: "10px", fontWeight: "var(--semibold)" }}>Preencha os dados abaixo</span>
         </div>

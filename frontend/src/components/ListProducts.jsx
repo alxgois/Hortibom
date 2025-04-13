@@ -1,10 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { productsList } from "../data";
 import Product from "./Product";
 import Cart from "./Cart";
 import logo from "../assets/logo-hortibom.png";
-import { faCircleInfo, faShareNodes } from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo, faInbox, faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+
+// Lazy loading
+const BottomCartBar = lazy(() => import("./BottomCartBar"));
 
 function ListProducts() {
   const [searchProduct, setSearchProduct] = useState("");
@@ -34,7 +38,9 @@ function ListProducts() {
       .includes(searchProductNormalized)
   );
 
-  const addToCart = (id, name, unit, price, selectedQuantity = 1) => {
+  console.log(cartItems);
+
+  const addToCart = (id, name, selectedUnit, price, selectedQuantity = 1) => {
     setCartItems(prevItems => {
       const found = prevItems.find(product => product.id === id);
 
@@ -55,7 +61,7 @@ function ListProducts() {
           id: id,
           name: name,
           quantity: selectedQuantity,
-          unit: unit,
+          unit: selectedUnit,
           price: price,
         };
 
@@ -105,12 +111,12 @@ function ListProducts() {
             <p className='title'>Hortibom</p>
             <ul className='buttons'>
               <li>
-                <a href='#' target='_blank' rel='noopener noreferrer'>
-                  <FontAwesomeIcon icon={faCircleInfo} size='lg' />
+                <a href='https://www.instagram.com/hortifrut_hortibom/' target='_blank' rel='noopener noreferrer'>
+                  <FontAwesomeIcon icon={faInstagram} size='lg' />
                 </a>
               </li>
               <li>
-                <a href='#' target='_blank' rel='noopener noreferrer'>
+                <a href='https://www.instagram.com/hortifrut_hortibom/' target='_blank' rel='noopener noreferrer'>
                   <FontAwesomeIcon icon={faShareNodes} size='lg' />
                 </a>
               </li>
@@ -154,6 +160,7 @@ function ListProducts() {
             />
           ))}
         </section>
+        <Suspense fallback={null}>{cartItems.length && <BottomCartBar numItems={cartItems.length} />}</Suspense>
       </main>
       <Cart cartItems={cartItems} cartRef={cartRef} addToCart={addToCart} removeFromCart={removeFromCart} />
     </>
