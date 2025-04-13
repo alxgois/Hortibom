@@ -46,6 +46,11 @@ h3 {
   font-size: 1.1rem;
 }
 
+/* Um tamanho de fonte mínimo recomendado para evitar o zoom é 16px. Se for menor, o Safari pode ativar o zoom. */
+input {
+  font-size: 16px;
+}
+
 .prevent-select {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -79,10 +84,26 @@ h3 {
 
 .list-products-navbar {
   display: flex;
+  flex-direction: row;
   height: 85px;
   padding: 10px 20px;
   gap: 20px;
   background-color: white;
+  border-bottom: 1px solid #ccc;
+  box-shadow: #ccc 0px 0px 10px;
+}
+
+.list-products-navbar .logo-navbar {
+  width: 80px;
+}
+
+.list-products-navbar .logo-navbar img {
+  height: 100%;
+  border: 2px solid var(--green);
+  background-color: var(--green-light);
+  box-shadow: var(--green-light) 0px 0px 10px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .list-products-navbar .info {
@@ -106,15 +127,6 @@ h3 {
 .list-products-navbar .buttons li a {
   text-decoration: none;
   color: #a7a6a6;
-}
-
-.list-products-navbar .logo-navbar img {
-  height: 100%;
-  border: 2px solid var(--green);
-  background-color: var(--green-light);
-  box-shadow: var(--green-light) 0px 0px 10px;
-  padding: 5px;
-  border-radius: 5px;
 }
 
 .cartbar-container {
@@ -216,6 +228,9 @@ h3 {
 }
 
 @media (min-width: 1024px) {
+  .shopping-bag-container {
+    display: none;
+  }
   .list-products-navbar {
     display: none;
   }

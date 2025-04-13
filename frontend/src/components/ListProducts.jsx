@@ -6,6 +6,8 @@ import logo from "../assets/logo-hortibom.png";
 import { faCircleInfo, faInbox, faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import ShoppingBag from "./ShoppingBag";
+ShoppingBag;
 
 // Lazy loading
 const BottomCartBar = lazy(() => import("./BottomCartBar"));
@@ -13,6 +15,7 @@ const BottomCartBar = lazy(() => import("./BottomCartBar"));
 function ListProducts() {
   const [searchProduct, setSearchProduct] = useState("");
   const [cartItems, setCartItems] = useState([]);
+  const [showShoppingBag, setShowShoppingBag] = useState(false);
   const cartRef = useRef(null);
   const products = productsList;
 
@@ -37,8 +40,6 @@ function ListProducts() {
       .toLowerCase()
       .includes(searchProductNormalized)
   );
-
-  console.log(cartItems);
 
   const addToCart = (id, name, selectedUnit, price, selectedQuantity = 1) => {
     setCartItems(prevItems => {
@@ -100,6 +101,7 @@ function ListProducts() {
           flex: 1,
           height: "100vh",
           overflowY: "scroll",
+          // overflowX: "hidden",
           // scrollbarWidth: "none", // Firefox
           // msOverflowStyle: "none", // IE e Edge antigos
         }}>
@@ -140,13 +142,16 @@ function ListProducts() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              padding: "0px 5px",
               backgroundColor: "white",
               border: "1px #cccc solid",
               fontSize: "0.8rem",
               cursor: "pointer",
+              fontWeight: "var(--semibold)",
+              color: "gray",
             }}
             onClick={() => setSearchProduct("")}>
-            <span>Limpar</span>
+            <span>LIMPAR</span>
           </div>
         </div>
         <section className='list-products-container'>
@@ -160,7 +165,20 @@ function ListProducts() {
             />
           ))}
         </section>
-        <Suspense fallback={null}>{cartItems.length && <BottomCartBar numItems={cartItems.length} />}</Suspense>
+        <Suspense fallback={null}>
+          {cartItems.length > 0 && (
+            <BottomCartBar numItems={cartItems.length} setShowShoppingBag={setShowShoppingBag} />
+          )}
+        </Suspense>
+        {showShoppingBag && (
+          <ShoppingBag
+            cartItems={cartItems}
+            cartRef={cartRef}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
+            setShowShoppingBag={setShowShoppingBag}
+          />
+        )}
       </main>
       <Cart cartItems={cartItems} cartRef={cartRef} addToCart={addToCart} removeFromCart={removeFromCart} />
     </>

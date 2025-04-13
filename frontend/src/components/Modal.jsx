@@ -11,7 +11,7 @@ const countryOptions = [
   { id: 2, label: "Estados Unidos", country: "us", ddd: "+1", flag: flagUS },
 ];
 
-function Modal({ showModal, createOrder, userData, setUserData }) {
+function Modal({ showModal, createOrder, userData, setUserData, modalWidth = "500px" }) {
   const [selectedCountry, setCountry] = useState(countryOptions[0]);
   const [showOptions, setShowOptions] = useState(false);
 
@@ -23,6 +23,7 @@ function Modal({ showModal, createOrder, userData, setUserData }) {
   const handleConfirm = () => {
     createOrder();
     showModal(false);
+    // window.location.href = "https://www.google.com";
   };
 
   return (
@@ -44,11 +45,11 @@ function Modal({ showModal, createOrder, userData, setUserData }) {
         className='modal-content-customer-info'
         style={{
           backgroundColor: "white",
-          width: "500px",
+          width: modalWidth,
           padding: "20px",
           borderRadius: "5px",
         }}>
-        <div style={{ marginBottom: "30px" }}>
+        <div style={{ marginBottom: "30px" }} onClick={() => showModal(false)}>
           <FontAwesomeIcon icon={faArrowLeft} />
           <span style={{ marginLeft: "10px", fontWeight: "var(--semibold)" }}>Preencha os dados abaixo</span>
         </div>

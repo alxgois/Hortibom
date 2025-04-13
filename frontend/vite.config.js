@@ -6,4 +6,8 @@ export default defineConfig({
   plugins: [react()],
   base: "/hortibom/", // substitua <nome-do-repositorio> pelo nome do seu repositório
   // outras configurações
+  server: {
+    host: "0.0.0.0", // Permite o acesso de outros dispositivos
+    port: 5173, // Ou a porta que você deseja usar
+  },
 });
