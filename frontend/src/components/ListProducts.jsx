@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { productsList } from "../data";
 import Product from "./Product";
 import Cart from "./Cart";
-import logo from "../assets/logo-hortibom.png";
+import logo from "../assets/logo-hortibom-v2.png";
 import { faCircleInfo, faInbox, faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";

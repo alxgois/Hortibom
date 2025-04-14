@@ -117,6 +117,7 @@ function Modal({ showModal, createOrder, userData, setUserData, modalWidth = "50
                 style={{
                   border: "1px solid #cccccc",
                   borderRadius: "5px",
+                  width: "100%",
                   flex: 1,
                   padding: "0px 10px",
                 }}
@@ -206,7 +207,7 @@ function Modal({ showModal, createOrder, userData, setUserData, modalWidth = "50
                   style={{
                     position: "absolute",
                     top: 41,
-                    height: "190px",
+                    height: "150px",
                     overflow: "hidden",
                     overflowY: "auto",
                     borderRadius: "5px",
@@ -239,7 +240,7 @@ function Modal({ showModal, createOrder, userData, setUserData, modalWidth = "50
           <div
             style={{
               backgroundColor: userData.name && userData.phone.length === 13 ? "var(--brand-color)" : "#ececec",
-              marginTop: "150px",
+              marginTop: "100px",
               padding: "10px 0px",
               display: "flex",
               justifyContent: "center",

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faPhone, faClipboardList, faComments } from "@fortawesome/free-solid-svg-icons";
 import { tabList } from "../data";
-import logo from "../assets/logo-hortibom.png";
+import logo from "../assets/logo-hortibom-v2.png";
 
 export function Sidebar({ selectedPage, setPage }) {
   return (
@@ -28,14 +28,14 @@ export function Sidebar({ selectedPage, setPage }) {
           alignItems: "center",
           padding: "20px",
         }}>
-        <img src={logo} alt='logo hortibom' style={{ width: "60%" }} />
-        <h1
+        <img src={logo} alt='logo hortibom' style={{ width: "80%" }} />
+        {/* <h1
           style={{
             marginTop: "5px",
             color: "rgba(255, 255, 255, 0.92)",
           }}>
           HortiBom
-        </h1>
+        </h1> */}
       </div>
 
       <ul

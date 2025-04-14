@@ -94,11 +94,13 @@ input {
 }
 
 .list-products-navbar .logo-navbar {
-  width: 80px;
+  width: 90px;
 }
 
 .list-products-navbar .logo-navbar img {
+  width: 100%;
   height: 100%;
+  object-fit: contain;
   border: 2px solid var(--green);
   background-color: var(--green-light);
   box-shadow: var(--green-light) 0px 0px 10px;
