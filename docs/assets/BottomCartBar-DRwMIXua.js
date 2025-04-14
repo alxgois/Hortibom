@@ -1,0 +1,1 @@
+import{j as s,F as n,f as o}from"./index-CHpnRDQz.js";function i({numItems:a,setShowShoppingBag:e}){return s.jsxs("div",{className:"cartbar-container",onClick:()=>e(!0),children:[s.jsxs("div",{className:"icon-shopping",children:[s.jsx(n,{icon:o,size:"lg"}),s.jsx("span",{className:"number-of-items",children:a})]}),s.jsx("span",{children:"Ver sacola"})]})}export{i as default};
