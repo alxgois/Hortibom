@@ -166,16 +166,17 @@ ${cartItems.observations ? `📌 *Observações:* ${userData.observations}` : ""
             bottom: 0,
             right: 0,
             width: "320px",
-            height: "120px",
+            // height: "120px",
             padding: "0px 30px",
             backgroundColor: "white",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
             borderTop: "1px #ecececec solid",
+            paddingTop: "20px",
             paddingBottom: "20px",
           }}>
-          <div
+          {/* <div
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -185,7 +186,7 @@ ${cartItems.observations ? `📌 *Observações:* ${userData.observations}` : ""
             }}>
             <p>Total</p>
             <p>R${orderTotalPrice.toFixed(2)}</p>
-          </div>
+          </div> */}
           <div
             style={{
               display: "flex",

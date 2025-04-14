@@ -21,9 +21,8 @@ function Product({ id, image, category, name, defaultQuantity, unit, price, addT
       <div
         style={{
           display: "flex",
-          gap: "20px",
           height: "100px",
-          marginBottom: "10px",
+          // marginBottom: "10px",
         }}>
         <div className='img-container'>
           <img src={image || productImgDefault} alt={name} loading='lazy' />
@@ -33,14 +32,33 @@ function Product({ id, image, category, name, defaultQuantity, unit, price, addT
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            gap: "5px",
+            flex: 1,
+            padding: "10px",
           }}>
-          <p className='category'>{category}</p>
+          {/* <p className='category'>{category}</p> */}
           <p className='name'>{name}</p>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+          <p
+            style={{
+              fontWeight: "var(--bold)",
+              fontSize: "1rem",
+              textAlign: "end",
+              borderBottom: "1px solid #ececec",
+            }}>
+            R$ {price.toFixed(2)}
+          </p>
+          <p style={{ color: "var(--brand-color)" }}>{unit}</p>
         </div>
       </div>
       {/* Row 2 */}
-      <div
+      {/* <div
         style={{
           flex: 1,
           gap: "10px",
@@ -94,7 +112,7 @@ function Product({ id, image, category, name, defaultQuantity, unit, price, addT
             R$ {price.toFixed(2)}
           </p>
         </div>
-      </div>
+      </div> */}
       {/* Row 3 */}
       <div
         style={{
@@ -172,7 +190,7 @@ function Product({ id, image, category, name, defaultQuantity, unit, price, addT
             gap: "5px",
             padding: "0px 5px",
           }}
-          onClick={() => addToCart(id, name, selectedUnit, price, selectedQuantity)}>
+          onClick={() => addToCart(id, name, unit, price, selectedQuantity)}>
           <p>Adicionar</p>
           <FontAwesomeIcon icon={faCartShopping} />
         </div>

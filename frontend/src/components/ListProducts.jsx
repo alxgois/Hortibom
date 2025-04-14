@@ -41,7 +41,7 @@ function ListProducts() {
       .includes(searchProductNormalized)
   );
 
-  const addToCart = (id, name, selectedUnit, price, selectedQuantity = 1) => {
+  const addToCart = (id, name, unit, price, selectedQuantity = 1) => {
     setCartItems(prevItems => {
       const found = prevItems.find(product => product.id === id);
 
@@ -62,7 +62,7 @@ function ListProducts() {
           id: id,
           name: name,
           quantity: selectedQuantity,
-          unit: selectedUnit,
+          unit: unit,
           price: price,
         };
 
